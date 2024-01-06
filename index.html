@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Convert Text</title>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <ul id="nav">
+                <li><a href="">Home</a></li>
+                <li><a href="">Giáo trình</a></li>
+                <li><a href="">Website</a></li>
+                <li><a href="">Convert Tab</a></li>
+                
+            </ul>
+        </div>
+
+        <div id="slider">
+
+        </div>
+
+        <div id="content">
+           
+            <div class="container">
+                
+                <textarea class="left-textbox content-left" placeholder="Nội dung cần chuyển đổi"></textarea>
+                <button id="btn-content">Text Convert</button>
+                <textarea class="right-textbox content-right" placeholder="Nội dung sau khi chuyển đổi"></textarea>
+            </div>
+            <div class="container">
+                
+                <textarea class="left-textbox pinyin-left" placeholder="Pinyin cần chuyển đổi"></textarea>
+                <button id="btn-pinyin">Pinyin Convert</button>
+                <textarea class="right-textbox pinyin-right" placeholder="Pinyin sau khi chuyển đổi"></textarea>
+            </div>
+
+        </div>
+
+        <div id="footer">
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chinese-to-pinyin/browser.js"></script>
+    <script>
+        
+        document.getElementById('btn-content').addEventListener('click', function() {
+            // Lấy nội dung từ left-textbox
+            var leftTextbox = document.querySelector('.content-left');
+            var leftContent = leftTextbox.value;
+            
+            var modifiedContent = convertAndFormat(leftContent);
+    
+            // Gán nội dung đã thay đổi vào right-textbox
+            var rightTextbox = document.querySelector('.content-right');
+            rightTextbox.value = modifiedContent;
+            var pinyinText = document.querySelector('.pinyin-left');
+            pinyinText.value = modifiedContent;
+        });
+        document.getElementById('btn-pinyin').addEventListener('click', function() {
+            var rightTextbox = document.querySelector('.content-right');
+            var contentRight = rightTextbox.value;
+            
+            // Chuyển đổi nội dung sang Pinyin và gán vào pinyin-left
+            var pinyinText = document.querySelector('.pinyin-left');
+            pinyinText.value = convertToPinyin(contentRight);
+        });
+
+        function convertToPinyin(text) {
+            // Sử dụng thư viện chinese-to-pinyin
+            var pinyinContent = window.getPinyin(text, {
+                removeTone: true // Nếu bạn muốn loại bỏ dấu thanh, bạn có thể sử dụng removeTone: true
+            });
+            return pinyinContent;
+        }
+        function convertAndFormat(text) {
+         // Sử dụng biểu thức chính quy để tách chuỗi theo các dấu '.', ';', '?', '!'
+            var sentences = text.split(/([.!?。？！])\s*/);
+
+            // Tạo lại chuỗi với mỗi câu xuống dòng
+            var formattedContent = '';
+            for (var i = 0; i < sentences.length; i += 2) {
+                formattedContent += sentences[i].trim() + (sentences[i + 1] || '');
+                if (i < sentences.length - 2) {
+                    formattedContent += '\n';
+                }
+            }
+             formattedContent = replaceValue(formattedContent)
+
+        return formattedContent;
+        }
+        function replaceValue(text){
+            text = text.replace(/《/g, '「');
+            text = text.replace(/》/g, '」');
+            text = text.replace(/？/g, '?');
+            text = text.replace(/◎ /g, '');
+            text = text.replace(/！/g, '!');
+            text = text.replace(/。」/g, '」。');
+            text = text.replace(/phật/g, 'Phật');
+            text = text.replace(/a di đà/g, 'A Di Đà');
+            text = text.replace(/di đà/g, 'Di Đà');
+            text = text.replace(/như lai/g, 'Như Lai');
+            text = text.replace(/vô lượng thọ/g, '"Vô Lượng Thọ"');
+            text = text.replace(/tổ sư đại đức/g, 'Tổ sư Đại đức');
+            text = text.replace(/duyến/g, 'duyên');
+            text = text.replace(/sa bà/g, 'Sa Bà');
+            text = text.replace(/thụy tương/g, 'thụy tướng');
+            text = text.replace(/tăng trường/g, 'tăng tưởng');
+            text = text.replace(/miễn nan/g, 'miễn nạn');
+            text = text.replace(/ thì /g, ' thời ');
+            text = text.replace(/ thì /g, ' thời ');
+            text = text.replace(/dung dịch/g, 'dung dị');
+            text = text.replace(/vu /g, 'ư ');
+            text = text.replace(/ứng i /g, 'ứng cai ');
+            text = text.replace(/ Một/g, ' một');
+            text = text.replace(/o độ/g, 'cao độ');
+            text = text.replace(/ ki /g, ' cơ ');
+            text = text.replace(/bồ tát/g, 'Bồ Tát');
+            text = text.replace(/gian đoạn/g, 'gián đoạn');
+            text = text.replace(/đế nhàn/g, 'Đế Nhàn');
+            text = text.replace(/Đế nhàn/g, 'Đế Nhàn');
+            text = text.replace(/pháp sư/g, 'Pháp sư');
+            text = text.replace(/thập ma/g, 'thậm ma');
+            text = text.replace(/chích/g, 'chỉ');
+            text = text.replace(/yêu/g, 'yếu');
+            text = text.replace(/yếu ma/g, 'yêu ma');
+            text = text.replace(/đại tàng/g, 'đại tạng');
+            text = text.replace(/nhạc/g, 'lạc');
+            text = text.replace(/trúng/g, 'trung');
+            text = text.replace(/yếu cầu/g, 'yêu cầu');
+            text = text.replace(/đại sĩ/g, 'Đại sĩ');
+            text = text.replace(/đại đức/g, 'Đại đức');
+            text = text.replace(/hập ma/g, 'hậm ma');
+            text = text.replace(/xá khí/g, 'xả khí');
+            text = text.replace(/xá kỷ/g, 'xả kỷ');
+            text = text.replace(/mĩ /g, 'mỹ ');
+            text = text.replace(/chúc ư/g, 'thuộc ư');
+            text = text.replace(/nhập quan/g, 'nhập quán');
+            text = text.replace(/thụ dụng/g, 'thọ dụng');
+            text = text.replace(/di lặc/g, 'Di Lặc');
+            text = text.replace(/gian thoại/g, 'nhàn Thoại');
+            text = text.replace(/a tì/g, 'A Tì');
+            text = text.replace(/thiện tông/g, 'Thiền Tông');
+            text = text.replace(/thánh nhất/g, 'Thánh Nhất');
+            text = text.replace(/thiện đường/g, 'Thiền đường');
+            text = text.replace(/ấn quang/g, 'Ấn Quang');
+            text = text.replace(/Ấn quang/g, 'Ấn Quang');
+            text = text.replace(/luy /g, 'lụy ');
+            text = text.replace(/kiền nhiễu/g, 'can nhiễu');
+            text = text.replace(/tam bảo/g, 'Tam Bảo');
+            text = text.replace(/thiên thai/g, 'Thiên Thai');
+            text = text.replace(/viên giáo/g, 'Viên Giáo');
+            text = text.replace(/thập tín vị/g, 'Thập Tín Vị');
+            text = text.replace(/duyên phân/g, 'duyên phận');
+            text = text.replace(/thai loan/g, 'Đài Loan');
+            text = text.replace(/đài bắc/g, 'Đài Bắc');
+            text = text.replace(/lí tể hoa/g, 'Lí Tể Hoa');
+            text = text.replace(/cư sĩ lâm/g, 'Cư Sĩ Lâm');
+            text = text.replace(/Cư sĩ lâm/g, 'Cư Sĩ Lâm');
+            text = text.replace(/tân gia ba/g, 'Tân Gia Ba');
+            text = text.replace(/Tân gia ba/g, 'Tân Gia Ba');
+            text = text.replace(/hàn quán trường/g, 'Hàn Quán Trưởng');
+            text = text.replace(/Hàn quán trường/g, 'Hàn Quán Trưởng');
+            text = text.replace(/lí bỉnh nam/g, 'Lý Bỉnh Nam');
+            text = text.replace(/Lí bỉnh nam/g, 'Lý Bỉnh Nam');
+            text = text.replace(/lí lão/g, 'Lý lão');
+            text = text.replace(/Lí lão/g, 'Lý lão');
+            text = text.replace(/liên thai/g, 'Liên Đài');
+            text = text.replace(/Liên thai/g, 'Liên Đài');
+            text = text.replace(/tao nan/g, 'tao nạn');
+            text = text.replace(/liễu phàm/g, 'Liễu Phàm');
+            text = text.replace(/viên Liễu Phàm/g, 'Viên Liễu Phàm');
+            text = text.replace(/lăng nghiêm/g, 'Lăng Nghiêm');
+            text = text.replace(/thượng hải/g, 'Thượng Hải');
+            text = text.replace(/đức quốc/g, 'Đức quốc');
+            text = text.replace(/tịnh tông/g, 'Tịnh Tông');
+            text = text.replace(/\(thượng/g, 'thượng');
+            text = text.replace(/tịnh độ/g, 'Tịnh Độ');
+            return text;
+        }
+    
+    
+    </script>
+</body>
+</html>
