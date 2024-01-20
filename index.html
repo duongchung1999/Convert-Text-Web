@@ -11,11 +11,11 @@
         <div id="header">
             <ul id="nav">
                 <li><a href="">Home</a></li>
-                <li><a href="https://book.bfnn.org/books/0486.htm">中文教程</a></li>
-                <li><a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds">Website</a></li>
-                <li><a href="https://hanzii.net/?hl=vi">Hanzi Dict</a></li>
-                <li><a href="https://tudiendich.com/">Hán Việt</a></li>
-                <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf">PDF Giáo trình</a></li>
+                <li><a href="https://book.bfnn.org/books/0486.htm"  onclick="openInNewTab(event)">中文教程</a></li>
+                <li><a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds" onclick="openInNewTab(event)">Website</a></li>
+                <li><a href="https://hanzii.net/?hl=vi"  onclick="openInNewTab(event)">Hanzi Dict</a></li>
+                <li><a href="https://tudiendich.com/"  onclick="openInNewTab(event)">Hán Việt</a></li>
+                <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf"  onclick="openInNewTab(event)">PDF Giáo trình</a></li>
                 
             </ul>
         </div>
@@ -105,6 +105,7 @@
             text = text.replace(/di đà/g, 'Di Đà');
             text = text.replace(/như lai/g, 'Như Lai');
             text = text.replace(/vô lượng thọ/g, '"Vô Lượng Thọ"');
+            text = text.replace(/Vô lượng thọ/g, '"Vô Lượng Thọ"');
             text = text.replace(/tổ sư đại đức/g, 'Tổ sư Đại đức');
             text = text.replace(/duyến/g, 'duyên');
             text = text.replace(/sa bà/g, 'Sa Bà');
@@ -181,7 +182,6 @@
             text = text.replace(/\(thượng/g, 'thượng');
             text = text.replace(/tịnh độ/g, 'Tịnh Độ');
             text = text.replace(/kiếp nan/g, 'kiếp nạn');
-<<<<<<< HEAD
             text = text.replace(/nhị túc tôn/g, 'Nhị túc tôn');
             text = text.replace(/\?」/g, '」?');
             text = text.replace(/。」/g, '」。');
@@ -189,7 +189,6 @@
             text = text.replace(/đại phạm thiên vương/g, 'Đại Phạm Thiên Vương');
             text = text.replace(/cực lạc/g, 'Cực Lạc');
             text = text.replace(/kì hiện/g, 'thị hiện');
-=======
             text = text.replace(/gia tô/g, 'Gia Tô');
             text = text.replace(/Gia tô/g, 'Gia Tô');
             text = text.replace(/cơ đốc/g, 'Cơ Đốc');
@@ -197,10 +196,16 @@
             text = text.replace(/mã lị á/g, 'Mã Lị Á');
             text = text.replace(/y tư lan/g, 'Y Tư Lan');
             text = text.replace(/Y tư lan/g, 'Y Tư Lan');
->>>>>>> dd76122f59832aaa01752ed837c13caa23bd77db
+            text = text.replace(/\(tiêu/g, 'tiêu');
+            text = text.replace(/nhiếp thụ/g, 'nhiếp thọ');
+            text = text.replace(/nhĩ /g, 'nễ ');
+            text = text.replace(/nhĩ./g, 'nễ.');
+            text = text.replace(/lí mộc nguyên/g, 'Lý Mộc Nguyên');
+            text = text.replace(/Phật đà/g, 'Phật Đà');
 
             // Pinyin area
             text = text.replace(/dē /g,'de ');
+            text = text.replace(/dē./g,'de.');
             text = text.replace(/bú /g,'bù ');
             text = text.replace(/ā mí tuó fú/g,'ā mí tuó fó');
             text = text.replace(/yī xīn xiàng fú/g,'yī xīn xiàng fó');
@@ -218,9 +223,21 @@
             text = text.replace(/zhǎng shòu/g,'cháng shòu');
             text = text.replace(/zāi nán/g,'zāi nàn');
             text = text.replace(/jié nán/g,'jié nàn');
+            text = text.replace(/shì jiā móu ní fó/g,'shì jiā móu ní fó');
             return text;
         }
     
+        // Hàm mở link trong tab mới
+        function openInNewTab(event) {
+            // Ngăn chặn hành động mặc định của thẻ a (chuyển hướng trang)
+            event.preventDefault();
+
+            // Lấy đường link từ thuộc tính href của thẻ a
+            var link = event.target.href;
+
+            // Mở tab mới với đường link đã lấy
+            window.open(link, '_blank');
+        }
     
     </script>
 </body>
