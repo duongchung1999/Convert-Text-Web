@@ -32,6 +32,13 @@ html {
     position: relative;
     
 }
+#nav li img {
+    max-width: 100%; /* Đặt kích thước tối đa cho ảnh là 100% của phần tử cha */
+    border-radius: 50%;
+    height: 31px; /* Cho phép chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+    margin-right: 5px; /* Tạo khoảng cách giữa ảnh và văn bản */
+    margin-bottom: -9px;
+}
 
 #nav > li > a{
     color: #fff;

@@ -4,19 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+
     <title>Convert Text</title>
 </head>
 <body>
     <div id="main">
         <div id="header">
             <ul id="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="https://book.bfnn.org/books/0486.htm"  onclick="openInNewTab(event)">中文教程</a></li>
-                <li><a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds" onclick="openInNewTab(event)">Website</a></li>
-                <li><a href="https://hanzii.net/?hl=vi"  onclick="openInNewTab(event)">Hanzi Dict</a></li>
-                <li><a href="https://tudiendich.com/"  onclick="openInNewTab(event)">Hán Việt</a></li>
-                <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf"  onclick="openInNewTab(event)">PDF Giáo trình</a></li>
-                
+                <li>
+                    <a href="#">
+                        <img src="assets/image/Home.png" alt=""> 
+                        Home
+                        <i class="nav-icon ti-home"></i>
+                    </a>
+                </li>
+                <li><a href="https://book.bfnn.org/books/0486.htm" onclick="openInNewTab(event)">
+                    <img src="assets/image/book1.png" alt="中文"> 
+                    教程
+                    <!-- <i class="nav-icon ti-book"></i> -->
+                </a></li>
+                <li>
+                    <a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds" onclick="openInNewTab(event)">
+                        <img src="https://ava-grp-talk.zadn.vn/2/b/e/8/2/360/056059ce9cbe0aa7b902032495aef1c6.jpg" alt="Website"> 
+                    Website
+                </a></li>
+                <li><a href="https://hanzii.net/?hl=vi" onclick="openInNewTab(event)">
+                    <img src="assets/image/ic_logo.png" alt="汉字"> 
+                    Từ điển
+                </a></li>
+                <li><a href="https://tudiendich.com/" onclick="openInNewTab(event)">
+                    <img src="assets/image/convert.jpg" alt="Convert"> 
+                    Chữ Hán
+                    <!-- <i class="nav-icon ti-reload"></i> -->
+                </a></li>
+                <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf" onclick="openInNewTab(event)">
+                    <img src="assets/image/PDF.png" alt="PDF"> 
+                    Giáo trình
+                </a></li>
             </ul>
         </div>
 
@@ -244,7 +269,10 @@
             var link = event.target.href;
 
             // Mở tab mới với đường link đã lấy
+            // window.open(link, '_blank','top=100,left=100');
             window.open(link, '_blank');
+            // newTab.blur();
+            window.focus();
         }
     
     </script>
