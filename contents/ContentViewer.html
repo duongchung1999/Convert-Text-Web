@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./ContentViewer.css">
+    <title>Đọc dữ liệu từ file và hiển thị</title>
+</head>
+<body>
+    <div id="main">
+        <div id="header"></div>
+        <div id="slider"></div>
+        <div id="content">
+            <h1>Dữ liệu từ File</h1>
+
+            <!-- Thêm combobox -->
+            <label for="fileList">Chọn tệp:</label>
+            <select id="fileList" onchange="loadSelectedFile()">
+                <!-- Danh sách tên file sẽ được thêm ở đây bằng mã JavaScript -->
+            </select>
+        
+            <button onclick="loadData()">Hiển thị Dữ liệu</button>
+            <div id="output"></div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    
+
+    <script>
+        // Sự kiện khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy thẻ combobox
+            var fileList = document.getElementById('fileList');
+
+            // Gọi hàm để lấy danh sách tên file
+            loadFileList();
+
+            // Hàm để lấy danh sách tên file
+            function loadFileList() {
+                // Sử dụng đối tượng XMLHttpRequest để đọc danh sách tên file từ tệp văn bản
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Chia chuỗi thành mảng các tên file
+                        var fileNames = this.responseText.split('\n').filter(Boolean);
+
+                        // Thêm tên file vào combobox
+                        fileNames.forEach(function(fileName) {
+                            var option = document.createElement('option');
+                            option.value = fileName;
+                            option.text = fileName;
+                            fileList.add(option);
+                        });
+                    }
+                };
+                // Mở tệp văn bản để đọc
+                xhttp.open("GET", "../assets/study/fileList.txt", true);
+                xhttp.send();
+            }
+
+        });
+
+        // Hàm được gọi khi chọn một tệp từ combobox
+        function loadSelectedFile() {
+            // Lấy thẻ combobox và giá trị được chọn
+            var fileList = document.getElementById('fileList');
+            var selectedFile = fileList.value;
+
+            // Sử dụng đối tượng XMLHttpRequest để đọc file được chọn
+            var xhttp = new XMLHttpRequest();
+
+            // Mở tệp với phương thức GET, và chỉ định tên tệp được chọn
+            xhttp.open("GET", "../assets/study/" + selectedFile, true);
+
+            // Xử lý sự kiện khi yêu cầu thành công
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Gán nội dung đọc được từ tệp vào phần tử có id là "output"
+                    document.getElementById("output").innerHTML = this.responseText;
+                }
+            };
+
+            // Gửi yêu cầu đến server để đọc tệp
+            xhttp.send();
+        }
+
+        // Hàm được gọi khi nhấn nút "Hiển thị Dữ liệu"
+        function loadData() {
+            // Sử dụng đối tượng XMLHttpRequest để đọc file
+            var xhttp = new XMLHttpRequest();
+
+            // Lấy thẻ combobox và giá trị được chọn
+            var fileList = document.getElementById('fileList');
+            var selectedFile = fileList.value;
+
+            // Mở tệp với phương thức GET, và chỉ định tên tệp được chọn
+            xhttp.open("GET", "../assets/study/" + selectedFile, true);
+
+            // Xử lý sự kiện khi yêu cầu thành công
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Gán nội dung đọc được từ tệp vào phần tử có id là "output"
+                    document.getElementById("output").innerHTML = this.responseText;
+                }
+            };
+
+            // Gửi yêu cầu đến server để đọc tệp
+            xhttp.send();
+        }
+    </script>
+
+</body>
+</html>

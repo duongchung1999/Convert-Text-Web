@@ -42,6 +42,10 @@
                     <img src="assets/image/PDF.png" alt="PDF"> 
                     Giáo trình
                 </a></li>
+                <li><a href="#" id="translationLink">
+                    <img src="assets/image/book2.jpg" alt="PDF"> 
+                    Bài dịch
+                </a></li>
             </ul>
         </div>
 
@@ -55,6 +59,7 @@
                 
                 <textarea class="left-textbox content-left" placeholder="Nội dung cần chuyển đổi"></textarea>
                 <button id="btn-content">Text Convert</button>
+                <button id="btn-save" ><i class="nav-icon ti-download"></i></button>
                 <textarea class="right-textbox content-right" placeholder="Nội dung sau khi chuyển đổi"></textarea>
             </div>
             <div class="container">
@@ -73,7 +78,11 @@
     </div>
 
     <script>
-        
+        // Open New File html
+        document.getElementById('translationLink').addEventListener('click', function() {
+            window.open('./contents/ContentViewer.html', '_blank');
+        });
+        // End Open
         document.getElementById('btn-content').addEventListener('click', function() {
             // Lấy nội dung từ left-textbox
             var leftTextbox = document.querySelector('.content-left');
@@ -274,6 +283,34 @@
             // newTab.blur();
             window.focus();
         }
+
+        document.getElementById('btn-save').addEventListener('click', function() {
+            // Lấy nội dung từ content-right
+            var rightTextbox = document.querySelector('.content-right');
+            var contentToSave = rightTextbox.value;
+
+            // Tạo đối tượng Blob với nội dung cần lưu và kiểu dữ liệu là text/plain
+            var blob = new Blob([contentToSave], { type: 'text/plain' });
+
+            // Tạo đường dẫn (URL) cho Blob
+            var blobURL = URL.createObjectURL(blob);
+
+            // Tạo đối tượng link để tạo sự kiện click
+            var link = document.createElement('a');
+            link.href = blobURL;
+            
+            // Đặt tên file và kiểu MIME
+            link.download = 'text.txt';
+            
+            // Thêm link vào body
+            document.body.appendChild(link);
+
+            // Mô phỏng sự kiện click để tải file
+            link.click();
+
+            // Xóa đối tượng link sau khi đã thực hiện xong
+            document.body.removeChild(link);
+        });
     
     </script>
 </body>
