@@ -1,3 +1,2 @@
-file1.txt
-file2.txt
+fileList.txt
 C2B40.txt

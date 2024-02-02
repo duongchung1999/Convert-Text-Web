@@ -9,3 +9,121 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 
 }
+#header {
+    /* height: 46px;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    float: left;
+    width: 300px;
+    background-color: #000;
+    z-index: 1;
+}
+
+#nav {
+    display: inline-block;
+}
+#nav > li {
+    display: inline-block;
+}
+
+#nav li {
+    /* display: inline-block; */
+    position: relative;
+    
+}
+#nav li img {
+    max-width: 100%; /* Đặt kích thước tối đa cho ảnh là 100% của phần tử cha */
+    border-radius: 50%;
+    height: 40px; /* Cho phép chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+    margin-right: 5px; /* Tạo khoảng cách giữa ảnh và văn bản */
+    margin-bottom: -9px;
+}
+
+#nav > li > a{
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#nav li a {
+    text-decoration: none;
+    line-height: 46px;
+    padding: 10px 24px;
+    display: block;
+    width: 300px;
+    font-size: 20px;
+}
+#nav > li:hover > a {
+    color: #000;
+    background-color: #ccc;
+}
+#content{
+    margin-left: 300px;
+}
+#header-select{
+    margin: 5px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    width: 100%;
+    margin: 0 auto;
+    /* padding: 20px; */
+}
+#fileList,#loadData{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(209, 105, 0);
+    font-size: 25px;
+    font-style: italic;
+    margin: 5px;
+    color: #fff;
+    border-style: none;
+
+}
+.btn-save{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: darkturquoise;
+    font-size: 25px;
+    font-style: italic;
+    margin: 0 5px;
+    color: #fff;
+    border-style: none;
+}
+
+textarea {
+    font-family: 'Source Han Sans', sans-serif;
+    background-color: #d4ff6d33;
+    margin: 0 5px;
+    /* Thay 'Your-Chinese-Font' bằng tên phông chữ tiếng Trung bạn muốn sử dụng */
+}
+
+/* Tùy chỉnh kích thước và kiểu chữ */
+.richtext {
+    font-size: 32px; /* Thay đổi kích thước font chữ theo ý muốn */
+    font-weight: normal; /* hoặc bold tùy thuộc vào ý muốn của bạn */
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.left-textbox,
+.right-textbox {
+    width: 48%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 800px; 
+    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+}

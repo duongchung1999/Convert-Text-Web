@@ -11,12 +11,20 @@ html {
 
 }
 #header {
-    height: 46px;
+    /* height: 46px;
     background-color: #000;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    float: left;
+    width: 300px;
+    background-color: #000;
     z-index: 1;
 }
 
@@ -35,7 +43,7 @@ html {
 #nav li img {
     max-width: 100%; /* Đặt kích thước tối đa cho ảnh là 100% của phần tử cha */
     border-radius: 50%;
-    height: 31px; /* Cho phép chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+    height: 40px; /* Cho phép chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
     margin-right: 5px; /* Tạo khoảng cách giữa ảnh và văn bản */
     margin-bottom: -9px;
 }
@@ -46,10 +54,16 @@ html {
 }
 
 #nav li a {
-    text-decoration: none;
+    /* text-decoration: none;
     line-height: 46px;
     padding: 0 24px;
+    display: block; */
+    text-decoration: none;
+    line-height: 46px;
+    padding: 10px 24px;
     display: block;
+    width: 300px;
+    font-size: 20px;
 }
 #nav > li:hover > a {
     color: #000;
@@ -72,13 +86,14 @@ html {
 }
 
 #content{
-    margin-top: 46px;
+    /* margin-top: 46px; */
+    margin-left: 300px;
 }
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
 }

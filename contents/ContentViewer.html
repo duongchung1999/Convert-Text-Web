@@ -4,14 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./ContentViewer.css">
+    <link rel="stylesheet" href="../assets/fonts/themify-icons/themify-icons.css">
     <title>Đọc dữ liệu từ file và hiển thị</title>
 </head>
 <body>
     <div id="main">
-        <div id="header"></div>
+        <div id="header">
+            <ul id="nav">
+                <li>
+                    <a href="../index.html" id="translationLink">
+                        <img src="../assets/image/Home.png" alt=""> 
+                        Home
+                        <i class="nav-icon ti-home"></i>
+                    </a>
+                </li>
+                <li><a href="https://book.bfnn.org/books/0486.htm" onclick="openInNewTab(event)">
+                    <img src="../assets/image/book1.png" alt="中文"> 
+                    教程
+                    <!-- <i class="nav-icon ti-book"></i> -->
+                </a></li>
+                <li>
+                    <a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds" onclick="openInNewTab(event)">
+                        <img src="https://ava-grp-talk.zadn.vn/2/b/e/8/2/360/056059ce9cbe0aa7b902032495aef1c6.jpg" alt="Website"> 
+                    Website
+                </a></li>
+                <li><a href="https://hanzii.net/?hl=vi" onclick="openInNewTab(event)">
+                    <img src="../assets/image/ic_logo.png" alt="汉字"> 
+                    Từ điển
+                </a></li>
+                <li><a href="https://tudiendich.com/" onclick="openInNewTab(event)">
+                    <img src="../assets/image/convert.jpg" alt="Convert"> 
+                    Chữ Hán
+                    <!-- <i class="nav-icon ti-reload"></i> -->
+                </a></li>
+                <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf" onclick="openInNewTab(event)">
+                    <img src="../assets/image/PDF.png" alt="PDF"> 
+                    Giáo trình
+                </a></li>
+                <li><a href="#">
+                    <img src="../assets/image/book2.jpg" alt="PDF"> 
+                    Bài dịch
+                </a></li>
+            </ul>
+        </div>
+
         <div id="slider"></div>
         <div id="content">
-            <h1>Dữ liệu từ File</h1>
+            <div id="header-select">
+                <h1>Dữ liệu từ File</h1>
 
             <!-- Thêm combobox -->
             <label for="fileList">Chọn tệp:</label>
@@ -19,7 +59,17 @@
                 <!-- Danh sách tên file sẽ được thêm ở đây bằng mã JavaScript -->
             </select>
         
-            <button onclick="loadData()">Hiển thị Dữ liệu</button>
+            <button id="loadData" onclick="loadData()">Hiển thị Dữ liệu</button>
+            </div>
+            <div class="container">
+                <button class="btn-save" id="btn-left" ><i class="nav-icon ti-download"></i></button>
+                <textarea class="left-textbox content-left richtext" placeholder="Nội dung cần chuyển đổi"></textarea>
+                <!-- <button id="btn-content">Text Convert</button>
+                <button id="btn-save" ><i class="nav-icon ti-download"></i></button> -->
+                <textarea class="right-textbox content-right richtext" placeholder="Nội dung sau khi chuyển đổi"></textarea>
+                <button class="btn-save" id="btn-right" ><i class="nav-icon ti-download"></i></button>
+            </div>
+
             <div id="output"></div>
         </div>
 
@@ -77,10 +127,25 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Gán nội dung đọc được từ tệp vào phần tử có id là "output"
-                    document.getElementById("output").innerHTML = this.responseText;
+                    // document.getElementById("output").innerHTML = this.responseText;
+                    var leftTextbox = document.querySelector('.content-left');
+                    leftTextbox.value = this.responseText;
                 }
             };
+            xhttp.send();
+            xhttp = new XMLHttpRequest();
+             // Mở tệp với phương thức GET, và chỉ định tên tệp được chọn
+             xhttp.open("GET", "../assets/translate/" + selectedFile, true);
 
+                // Xử lý sự kiện khi yêu cầu thành công
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Gán nội dung đọc được từ tệp vào phần tử có id là "output"
+                        // document.getElementById("output").innerHTML = this.responseText;
+                        var rightTextbox = document.querySelector('.content-right');
+                        rightTextbox.value = this.responseText;
+                    }
+                };
             // Gửi yêu cầu đến server để đọc tệp
             xhttp.send();
         }
@@ -108,6 +173,34 @@
             // Gửi yêu cầu đến server để đọc tệp
             xhttp.send();
         }
+
+        document.getElementById('btn-right').addEventListener('click', function() {
+            // Lấy nội dung từ content-right
+            var rightTextbox = document.querySelector('.content-right');
+            var contentToSave = rightTextbox.value;
+
+            // Tạo đối tượng Blob với nội dung cần lưu và kiểu dữ liệu là text/plain
+            var blob = new Blob([contentToSave], { type: 'text/plain' });
+
+            // Tạo đường dẫn (URL) cho Blob
+            var blobURL = URL.createObjectURL(blob);
+
+            // Tạo đối tượng link để tạo sự kiện click
+            var link = document.createElement('a');
+            link.href = blobURL;
+            
+            // Đặt tên file và kiểu MIME
+            link.download = 'C2Bxx.txt';
+            
+            // Thêm link vào body
+            document.body.appendChild(link);
+
+            // Mô phỏng sự kiện click để tải file
+            link.click();
+
+            // Xóa đối tượng link sau khi đã thực hiện xong
+            document.body.removeChild(link);
+        });
     </script>
 
 </body>
