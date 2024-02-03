@@ -7,51 +7,73 @@
     <link rel="stylesheet" href="../assets/fonts/themify-icons/themify-icons.css">
     <title>Đọc dữ liệu từ file và hiển thị</title>
 </head>
+
+<style>
+    /* .menu-hidden{
+            display: none;
+        } */
+</style>
+
 <body>
     <div id="main">
-        <div id="header">
+        <div class="header js-header">
             <ul id="nav">
                 <li>
                     <a href="../index.html" id="translationLink">
                         <img src="../assets/image/Home.png" alt=""> 
-                        Home
-                        <i class="nav-icon ti-home"></i>
+                        <i class="menu-hidden">
+                            Home
+                            <i class="nav-icon ti-home"></i>
+                        </i>
+                        
+                        
+                        
                     </a>
                 </li>
                 <li><a href="https://book.bfnn.org/books/0486.htm" onclick="openInNewTab(event)">
                     <img src="../assets/image/book1.png" alt="中文"> 
-                    教程
+                    <i class="menu-hidden">教程</i>
+                    
                     <!-- <i class="nav-icon ti-book"></i> -->
                 </a></li>
                 <li>
                     <a href="https://nhidonghocphat.com/tinh-khong-phap-su-gia-ngon-luc-ds" onclick="openInNewTab(event)">
                         <img src="https://ava-grp-talk.zadn.vn/2/b/e/8/2/360/056059ce9cbe0aa7b902032495aef1c6.jpg" alt="Website"> 
-                    Website
+                  
+                    <i class="menu-hidden">Website</i>
                 </a></li>
                 <li><a href="https://hanzii.net/?hl=vi" onclick="openInNewTab(event)">
                     <img src="../assets/image/ic_logo.png" alt="汉字"> 
-                    Từ điển
+                   
+                    <i class="menu-hidden"> Từ điển</i>
                 </a></li>
                 <li><a href="https://tudiendich.com/" onclick="openInNewTab(event)">
                     <img src="../assets/image/convert.jpg" alt="Convert"> 
-                    Chữ Hán
+                    
+                    <i class="menu-hidden">Chữ Hán</i>
                     <!-- <i class="nav-icon ti-reload"></i> -->
                 </a></li>
                 <li><a href="https://tv.nhidonghocphat.com/gttd/CH21-010-03.pdf" onclick="openInNewTab(event)">
                     <img src="../assets/image/PDF.png" alt="PDF"> 
-                    Giáo trình
+                   
+                    <i class="menu-hidden"> Giáo trình</i>
                 </a></li>
                 <li><a href="#">
                     <img src="../assets/image/book2.jpg" alt="PDF"> 
-                    Bài dịch
+                    
+                    <i class="menu-hidden">Bài dịch</i>
                 </a></li>
             </ul>
         </div>
 
         <div id="slider"></div>
-        <div id="content">
+        <div class="content js-content">
             <div id="header-select">
-                <h1>Dữ liệu từ File</h1>
+                <h1>
+                    <i class="menu-icon ti-angle-double-left" ></i>
+                    <i class="menu-icon ti-angle-double-right" ></i>
+                    Dữ liệu từ File
+                </h1>
 
             <!-- Thêm combobox -->
             <label for="fileList">Chọn tệp:</label>
@@ -201,6 +223,51 @@
             // Xóa đối tượng link sau khi đã thực hiện xong
             document.body.removeChild(link);
         });
+
+        // document.getElementById('btn-menu').addEventListener('click', function() {
+        //         var navList = document.getElementById('nav');
+        //         navList.classList.toggle('menu-hidden');
+        //     });
+
+            //Hide Header
+        const taskbarhide = document.querySelector('.ti-angle-double-left')
+        const taskbarshow = document.querySelector('.ti-angle-double-right')
+        // const taskbar = document.querySelector('.menu-hidden')
+        const headerjs = document.querySelector('.js-header')
+        const contentjs = document.querySelector('.js-content')
+        var menuHiddenElements = document.querySelectorAll('.menu-hidden');
+
+        function ShowTaskbar(){
+            // taskbar.classList.remove('hidden')
+            menuHiddenElements.forEach(function(element) {
+                element.classList.remove('hidden');
+            });
+            taskbarhide.classList.remove('hidden')
+            taskbarshow.classList.add('hidden')
+            headerjs.classList.remove('js-changewidth')
+            contentjs.classList.remove('js-changemargin')
+            contentjs.classList.add('add-animation1')
+            headerjs.classList.add('add-animation1')
+            contentjs.classList.remove('add-animation')
+            headerjs.classList.remove('add-animation')
+        }
+        function HideTaskbar(){
+            // taskbar.classList.add('hidden')
+            menuHiddenElements.forEach(function(element) {
+                element.classList.add('hidden');
+            });
+            taskbarhide.classList.add('hidden')
+            taskbarshow.classList.remove('hidden')
+            headerjs.classList.add('js-changewidth')
+            contentjs.classList.add('js-changemargin')
+            contentjs.classList.remove('add-animation1')
+            headerjs.classList.remove('add-animation1')
+            contentjs.classList.add('add-animation')
+            headerjs.classList.add('add-animation')
+        }
+
+        taskbarhide.addEventListener('click',HideTaskbar)
+        taskbarshow.addEventListener('click',ShowTaskbar)
     </script>
 
 </body>
