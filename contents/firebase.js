@@ -49,6 +49,7 @@
 
 
 document.getElementById('btn-right').addEventListener('click', function() {
+
     var fileList = document.getElementById('fileList');
     var selectedFile = fileList.value;
     var rightTextbox = document.querySelector('.content-right');

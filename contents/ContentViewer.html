@@ -12,9 +12,12 @@
     /* .menu-hidden{
             display: none;
         } */
-</style>
+</style> 
+
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0&appId=1591174101628609" nonce="7cYWbTTJ"></script>
     <div id="main">
         <div class="header js-header">
             <ul id="nav">
@@ -77,11 +80,11 @@
 
             <!-- Thêm combobox -->
             <label for="fileList">Chọn tệp:</label>
-            <select id="fileList">
+            <select id="fileList" class="menu-fileList">
                 <!-- Danh sách tên file sẽ được thêm ở đây bằng mã JavaScript -->
             </select>
         
-            <button id="loadData" onclick="loadData()">Hiển thị Dữ liệu</button>
+            <button id="loadData" onclick="loadData()"> <i class="ti-plus" ></i></button>
             </div>
             <div class="container">
                 <!-- <button class="btn-save" id="btn-left" ><i class="nav-icon ti-download"></i></button> -->
@@ -95,10 +98,13 @@
             <div id="output"></div>
         </div>
 
-        <div id="footer"></div>
+        <div id="footer">
+            <div class="fb-comments" data-href="https://duongchung1999.github.io/Convert-Text-Web/contents/ContentViewer.html" data-width="576" data-numposts="5"></div>
+        </div>
     </div>
-    <script> 
-     </script>
+    <script src="./test.js"> 
+   
+    </script>
     <script type="module" src="./firebase.js">
       </script>
     <script src="./main.js"></script>
