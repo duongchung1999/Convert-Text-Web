@@ -158,15 +158,22 @@ textarea {
 
 .left-textbox,
 .right-textbox {
-    width: 48%;
+    width: 50%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    height: 800px; 
+    height: 800px;
     resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
 }
 
+.text-xs-center{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 /* javascript */
 .hidden{
