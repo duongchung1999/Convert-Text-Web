@@ -13,7 +13,9 @@ function ShowTaskbar(){
         element.classList.remove('hidden');
     });
     taskbarhide.classList.remove('hidden')
+    taskbarhide.classList.add('shower')
     taskbarshow.classList.add('hidden')
+    taskbarshow.classList.remove('shower')
     headerjs.classList.remove('js-changewidth')
     contentjs.classList.remove('js-changemargin')
     contentjs.classList.add('add-animation1')
@@ -27,7 +29,9 @@ function HideTaskbar(){
         element.classList.add('hidden');
     });
     taskbarhide.classList.add('hidden')
+    taskbarhide.classList.remove('shower')
     taskbarshow.classList.remove('hidden')
+    taskbarshow.classList.add('shower')
     headerjs.classList.add('js-changewidth')
     contentjs.classList.add('js-changemargin')
     contentjs.classList.remove('add-animation1')

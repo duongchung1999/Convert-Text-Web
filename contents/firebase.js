@@ -92,6 +92,43 @@ function SaveDataToFirebase(){
 
 };
 
+function CreateNewSection(filename){
+    var newSection = filename;
+    var contentToSave = "null";
+    var newData = {
+        [newSection]: contentToSave
+    };
+    var kechengPath =   `/users/user1/kecheng/${newSection}`
+    var translatePath =   `/users/user1/contents/${newSection}`
+    var dataRef1 = ref(db, translatePath);
+    
+    set(dataRef1, newData)
+    .then(() => {
+        console.log("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
+        // alert("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
+        // swal("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
+    })
+    .catch((error) => {
+        console.error("Lỗi khi ghi dữ liệu bài dịch:", error);
+    });
+
+
+    dataRef1 = ref(db, kechengPath);
+    var kechengcontent = "null";
+    contentToSave = kechengcontent.value;
+    newData = {
+        [newSection]: contentToSave,
+    };
+    set(dataRef1, newData)
+    .then(() => {
+        console.log("Dữ liệu kecheng đã được ghi thành công lên Firebase.");
+    })
+    .catch((error) => {
+        console.error("Lỗi khi ghi dữ liệu kecheng:", error);
+    });
+
+};
+
 
 var path = 'users';
 // SelectFile
@@ -196,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // End Load FileList
 
 export { SaveDataToFirebase };
+export { CreateNewSection };
 
 
 

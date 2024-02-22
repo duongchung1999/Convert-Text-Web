@@ -84,7 +84,9 @@ html {
 #header-select>h1{
     height: 50px;
 }
-
+.ti-angle-double-right{
+    display: none;
+}
 .container {
     display: flex;
     justify-content: space-between;
@@ -93,7 +95,7 @@ html {
     margin: 0 auto;
     /* padding: 20px; */
 }
-#fileList,#loadData{
+#fileList,#add-section{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -105,11 +107,14 @@ html {
     border-style: none;
 
 }
+#fileList{
+    /* width: 290px; */
+}
 .btn-save{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    background-color: darkturquoise;
+    background-color: rgb(209, 105, 0);
     font-size: 25px;
     font-style: italic;
     margin: 0 5px;
@@ -133,7 +138,7 @@ html {
     cursor: pointer;
 
 }
-#loadData:hover,
+#add-section:hover,
 #fileList:hover,
 .btn-save:hover,
 .container-close:hover{
@@ -223,7 +228,9 @@ textarea {
     padding: 20px;
 }
 .confirm-yes,
-.confirm-no{
+.confirm-no,
+.add-sections-yes,
+.add-sections-no{
     position: absolute;
     align-items: center;
     display: flex;
@@ -234,20 +241,24 @@ textarea {
     text-align: center;
     border-radius: 25px;
 }
-.confirm-no{
+.confirm-no,
+.add-sections-no{
     left: 40px;
     background: #ab3612;
 }
-.confirm-yes{
+.confirm-yes,
+.add-sections-yes{
     right: 40px;
     background: #0f7906;
 }
-.confirm-no:hover{
+.confirm-no:hover,
+.add-sections-no:hover{
     background: #d34114;
     cursor: pointer;
     height: 55px;
 }
-.confirm-yes:hover{
+.confirm-yes:hover,
+.add-sections-yes:hover{
     background: #12ae03;
     cursor: pointer;
     height: 55px;
@@ -256,11 +267,93 @@ h1{
     display: inline-block;
     margin: 0 auto;
 }
+/* End css confirm */
+
+/* Add Sections Begin */
+.add-sections{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* display: flex; */
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 2;
+}
+
+.add-sections-container{
+    position: relative;
+    background-color: #ffffff;
+    width: 700px;
+    min-height: 200px;
+    max-width: calc(100%-32px);
+    animation: modalTransY ease 0.5s;
+    border-radius: 25px;
+}
+.add-sections-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 30px;
+    z-index: 2;
+}
+.add-sections-header{
+    position: absolute;
+    width: 100%;
+    margin-top: 14px;
+    align-items: center;
+}
+.add-sections-header h2 {
+    margin: 0; /* Loại bỏ margin của thẻ h3 để tránh khoảng trắng thừa */
+    margin-right: 10px; /* Khoảng cách giữa thẻ h3 và input */
+    font-size: 28px;
+    font-family: 'Arial', sans-serif; /* Đặt kiểu phông chữ cho thẻ h3 */
+    text-align: center;
+    /* display: flex; */
+}
+
+.add-sections-input {
+    display: flex; /* Sử dụng flexbox để căn chỉnh phần tử con */
+    width: 83%;
+    position: absolute;
+    top: 63px;
+    margin-left: 51px;
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+
+.add-sections-input h3 {
+    margin: 0; /* Loại bỏ margin của thẻ h3 để tránh khoảng trắng thừa */
+    margin-right: 10px; /* Khoảng cách giữa thẻ h3 và input */
+    font-size: 21px; /* Đặt kích thước chữ cho thẻ h3 */
+    font-family: 'Arial', sans-serif; /* Đặt kiểu phông chữ cho thẻ h3 */
+    color: #4d4747;
+}
+.add-sections-input input {
+    flex-grow: 1; /* Để ô nhập liệu mở rộng ra và chiếm hết không gian còn lại */
+    font-size: 25px; /* Đặt kích thước chữ cho ô nhập liệu */
+    padding: 11px; /* Tăng khoảng đệm để làm cho ô nhập liệu dài ra và to hơn */
+    border: 1px solid #ccc; /* Thêm đường viền để phân biệt ô nhập liệu */
+    border-radius: 5px; /* Độ cong viền để tạo hình dạng hấp dẫn */
+    /* text-align: center; */
+    font-family: 'Arial', sans-serif; /* Đặt kiểu phông chữ cho ô nhập liệu */
+    font-style: italic;
+}
+
+.add-sections-close:hover{
+    background-color: #d34114;
+}
+/* Add Sections End */
 
 /* Javascript menu */
 .hidden{
     display: none;
 }
+
 .shower{
     display: inline-block;
 }

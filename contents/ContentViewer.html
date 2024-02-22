@@ -75,16 +75,16 @@
                 <h1>
                     <i class="menu-icon ti-angle-double-left" ></i>
                     <i class="menu-icon ti-angle-double-right" ></i>
-                    Dữ liệu từ File
+                    Luyện Dịch Chữ Hán
                 </h1>
 
             <!-- Thêm combobox -->
-            <label for="fileList">Chọn tệp:</label>
+            <!-- <label for="fileList">Chọn tệp:</label> -->
             <select id="fileList" class="menu-fileList">
                 <!-- Danh sách tên file sẽ được thêm ở đây bằng mã JavaScript -->
             </select>
         
-            <button id="loadData" onclick="loadData()"> <i class="ti-plus" ></i></button>
+            <button id="add-section" onclick="addSection()"> <i class="ti-plus" ></i></button>
             <button class="btn-save" id="btn-right" ><i class="nav-icon ti-download"></i></button>
             </div>
             <div class="container">
@@ -136,10 +136,36 @@
                 </div>
             </div>
         </div>
+
+        <div class="add-sections js-add-sections">
+            <div class="add-sections-container js-add-sections-container">
+                <div class="add-sections-close js-add-sections-close">
+                    <i class="ti-close"></i> 
+                </div>
+                <div class="add-sections-header js-add-sections-header">
+                   <h2>Tạo bài dịch mới</h2>
+                    
+                </div>
+                <div class="add-sections-body js-add-sections-body">
+                    <div class="add-sections-input">
+                        <h3>Nhập tên bài học:</h3>
+                        <input type="text" placeholder="Nhập tên bài mới bạn muốn tạo" />
+                    </div>
+                    <div class="add-sections-no js-add-sections-no">
+                        <h1>No</h1>
+                    </div>
+                    <div class="add-sections-yes js-add-sections-yes">
+                        <h1>Yes</h1>
+                    </div>
+                </div>
+                <div class="add-sections-footer js-add-sections-footer"></div>
+            </div>
+        </div>
     </div>
     <script type="module" src="./firebase.js"></script>
     <script type="module" src="./confirm.js"> </script>
     <script src="./main.js"></script>
+    <script type="module" src="./addSections.js"> </script>
     
 
 </body>
