@@ -114,8 +114,7 @@ function CreateNewSection(filename){
 
 
     dataRef1 = ref(db, kechengPath);
-    var kechengcontent = "null";
-    contentToSave = kechengcontent.value;
+    contentToSave = "null";
     newData = {
         [newSection]: contentToSave,
     };
