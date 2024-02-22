@@ -50,6 +50,10 @@
 
 document.getElementById('btn-right').addEventListener('click', function() {
 
+    // SaveDataToFirebase();
+});
+
+function SaveDataToFirebase(){
     var fileList = document.getElementById('fileList');
     var selectedFile = fileList.value;
     var rightTextbox = document.querySelector('.content-right');
@@ -64,7 +68,7 @@ document.getElementById('btn-right').addEventListener('click', function() {
     set(dataRef1, newData)
     .then(() => {
         console.log("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
-        alert("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
+        // alert("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
         // swal("Dữ liệu bài dịch đã được ghi thành công lên Firebase.");
     })
     .catch((error) => {
@@ -85,7 +89,8 @@ document.getElementById('btn-right').addEventListener('click', function() {
     .catch((error) => {
         console.error("Lỗi khi ghi dữ liệu kecheng:", error);
     });
-});
+
+};
 
 
 var path = 'users';
@@ -189,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFileList();
 });
 // End Load FileList
+
+export { SaveDataToFirebase };
 
 
 
