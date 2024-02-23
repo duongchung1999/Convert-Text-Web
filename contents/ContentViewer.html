@@ -84,8 +84,9 @@
                 <!-- Danh sách tên file sẽ được thêm ở đây bằng mã JavaScript -->
             </select>
         
-            <button id="add-section" onclick="addSection()"> <i class="ti-plus" ></i></button>
-            <button class="btn-save" id="btn-right" ><i class="nav-icon ti-download"></i></button>
+            <button id="add-section" class="buttoncss" onclick="addSection()"> <i class="ti-plus" ></i></button>
+            <button id="delete-section" class="buttoncss" onclick="deleteSection()"> <i class="ti-trash" ></i></button>
+            <button class="btn-save buttoncss" id="btn-right" ><i class="nav-icon ti-download"></i></button>
             </div>
             <div class="container">
                 <!-- <button class="btn-save" id="btn-left" ><i class="nav-icon ti-download"></i></button> -->
@@ -126,7 +127,7 @@
                     <div class="confirm-no js-confirm-no">
                         <h1>No</h1>
                     </div>
-                    <div class="confirm-yes js-confirm-yes">
+                    <div class="confirm-yes js-confirm-yes js-delete-yes">
                         <h1>Yes</h1>
                     </div>
                 </div>
@@ -166,6 +167,7 @@
     <script type="module" src="./confirm.js"> </script>
     <script src="./main.js"></script>
     <script type="module" src="./addSections.js"> </script>
+    <script type="module" src="./deleteSection.js"> </script>
     
 
 </body>

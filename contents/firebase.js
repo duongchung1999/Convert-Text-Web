@@ -2,7 +2,7 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
  // import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
- import { getDatabase, ref, get, set, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+ import { getDatabase, ref, get, set, remove, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 //  import swal from 'sweetalert';
 
  // TODO: Add SDKs for Firebase products that you want to use
@@ -94,9 +94,9 @@ function SaveDataToFirebase(){
 
 function CreateNewSection(filename){
     var newSection = filename;
-    var contentToSave = "null";
+    // var contentToSave = "null";
     var newData = {
-        [newSection]: contentToSave
+        [newSection]: `${newSection} phần dịch`,
     };
     var kechengPath =   `/users/user1/kecheng/${newSection}`
     var translatePath =   `/users/user1/contents/${newSection}`
@@ -114,9 +114,9 @@ function CreateNewSection(filename){
 
 
     dataRef1 = ref(db, kechengPath);
-    contentToSave = "null";
+    // contentToSave = "null";
     newData = {
-        [newSection]: contentToSave,
+        [newSection]: `${newSection} 中文`
     };
     set(dataRef1, newData)
     .then(() => {
@@ -127,7 +127,29 @@ function CreateNewSection(filename){
     });
 
 };
+function DeleteSection(filename){
+    var kechengPath =   `/users/user1/kecheng/${filename}`
+    var translatePath =   `/users/user1/contents/${filename}`
+    // Xóa dữ liệu từ Firebase
+    var dataRef1 = ref(db, translatePath);
+    remove(dataRef1)
+        .then(() => {
+            console.log("Dữ liệu bài dịch đã được xóa thành công từ Firebase.");
+        })
+        .catch((error) => {
+            console.error("Lỗi khi xóa dữ liệu bài dịch:", error);
+        });
 
+    dataRef1 = ref(db, kechengPath);
+    remove(dataRef1)
+        .then(() => {
+            console.log("Dữ liệu kecheng đã được xóa thành công từ Firebase.");
+        })
+        .catch((error) => {
+            console.error("Lỗi khi xóa dữ liệu kecheng:", error);
+        });
+
+};
 
 var path = 'users';
 // SelectFile
@@ -201,6 +223,7 @@ async function loadFileList() {
     if (contentsSnapshot.exists()) {
         const fileList = Object.keys(contentsSnapshot.val());
         updateFileListDropdown(fileList);
+        loadSelectedFile();
     } else {
         console.log("Không có dữ liệu tại đường dẫn này.");
     }
@@ -233,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export { SaveDataToFirebase };
 export { CreateNewSection };
+export { DeleteSection };
 
 
 
