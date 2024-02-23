@@ -186,6 +186,37 @@ function loadSelectedFile() {
     });
 
 }
+function loadInputFile(selectedFile) {
+    
+    var kechengPath =   `/users/user1/kecheng/${selectedFile}/${selectedFile}`
+    var translatePath =   `/users/user1/contents/${selectedFile}/${selectedFile}`
+    var fileList = document.getElementById('fileList');
+    fileList.value = selectedFile;
+    console.log(kechengPath);
+    console.log( getContentFromFireBase(translatePath));
+    getContentFromFireBase(translatePath)
+        .then((data) => {
+            if (data !== null) {
+                // Hiển thị dữ liệu trong right-textbox
+                document.querySelector('.content-right').value = data;
+            }
+        })
+        .catch((error) => {
+            console.error("Có lỗi xảy ra:", error);
+    });
+
+    getContentFromFireBase(kechengPath)
+    .then((data) => {
+        if (data !== null) {
+            // Hiển thị dữ liệu trong right-textbox
+            document.querySelector('.content-left').value = data;
+        }
+    })
+    .catch((error) => {
+        console.error("Có lỗi xảy ra:", error);
+    });
+
+}
 function getContentFromFireBase(path){
     return new Promise((resolve, reject) => {
         // Đọc dữ liệu từ Firebase
@@ -229,6 +260,19 @@ async function loadFileList() {
     }
 }
 
+//Hàm hiển thị file vừa khởi tạo
+async function ShowNewFile(newfilename) {
+    const contentsRef = ref(db, pathToContents);
+    const contentsSnapshot = await get(contentsRef);
+
+    if (contentsSnapshot.exists()) {
+        const fileList = Object.keys(contentsSnapshot.val());
+        updateFileListDropdown(fileList);
+        loadInputFile(newfilename);
+    } else {
+        console.log("Không có dữ liệu tại đường dẫn này.");
+    }
+}
 // Hàm để cập nhật combobox "fileList"
 function updateFileListDropdown(fileList) {
     const fileListDropdown = document.getElementById("fileList");
@@ -257,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 export { SaveDataToFirebase };
 export { CreateNewSection };
 export { DeleteSection };
+export { ShowNewFile };
 
 
 

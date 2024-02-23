@@ -1,5 +1,6 @@
 import { CreateNewSection } from './firebase.js';
 import { loadFileList } from './firebase.js';
+import { ShowNewFile } from './firebase.js';
 document.addEventListener("DOMContentLoaded", function () {
     const addButton = document.getElementById("add-section");
     const addSectionsForm = document.querySelector(".add-sections");
@@ -25,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         var sectionName = inputSectionName.value;
         CreateNewSection(sectionName);
-        loadFileList();
+        // loadFileList();
+        ShowNewFile(sectionName)
         addSectionsForm.style.display = "none";
         // Thực hiện các bước tiếp theo ở đây
     });
