@@ -114,8 +114,24 @@ html {
 #add-section {
     position: relative;
 }
-#add-section:hover {
+#add-section:hover .add-section-note {
     /* position: relative; */
+    display: block;
+}
+.add-section-note {
+    position: absolute;
+    background: #333;
+    width: 150px;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: -10px;
+    border-radius: 10px;
+    opacity: 95%;
+    display: none;
+}
+.add-section-note:hover{
+    background: #090707;
 }
 #fileList{
     /* width: 290px; */
@@ -160,20 +176,7 @@ html {
     cursor: pointer;
 }
 
-.add-section-note {
-    position: absolute;
-    background: #333;
-    width: 150px;
-    font-size: 20px;
-    padding: 10px;
-    margin-top: 5px;
-    margin-left: -10px;
-    border-radius: 10px;
-    opacity: 95%;
-}
-.add-section-note:hover{
-    background: #090707;
-}
+
 textarea {
     font-family: 'Source Han Sans', sans-serif;
     background-color: #d4ff6d33;
